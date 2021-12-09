@@ -120,13 +120,13 @@ const Home = () => {
     />,
   );
 
-  const [onPresentTshareZap, onDissmissTshareZap] = useModal(
+  const [onPresentFshareZap, onDissmissFshareZap] = useModal(
     <ZapModal
       decimals={18}
       onConfirm={(zappingToken, tokenName, amount) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
         fshareLpZap.onZap(zappingToken, tokenName, amount);
-        onDissmissTshareZap();
+        onDissmissFshareZap();
       }}
       tokenName={'FSHARE-AVAX-LP'}
     />,
@@ -355,7 +355,7 @@ const Home = () => {
                 </CardIcon>
               </Box>
               <Box mt={2}>
-                <Button color="primary" onClick={onPresentTshareZap} variant="contained">
+                <Button color="primary" onClick={onPresentFshareZap} variant="contained">
                   Zap In
                 </Button>
               </Box>

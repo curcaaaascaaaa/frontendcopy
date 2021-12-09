@@ -7979,7 +7979,7 @@
       }
     ]
   },
-  "TshareAvaxLPFShareRewardPool": {
+  "FshareAvaxLPFShareRewardPool": {
     "address": "0xcc0a87F7e7c693042a9Cc703661F5060c80ACb43",
     "abi": [
       {

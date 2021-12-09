@@ -16,10 +16,13 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const displayFrostBalance = useMemo(() => getDisplayBalance(frostBalance), [frostBalance]);
 
   const fshareBalance = useTokenBalance(frostFinance.FSHARE);
-  const displayTshareBalance = useMemo(() => getDisplayBalance(fshareBalance), [fshareBalance]);
+  const displayFshareBalance = useMemo(() => getDisplayBalance(fshareBalance), [fshareBalance]);
 
   const fbondBalance = useTokenBalance(frostFinance.FBOND);
-  const displayTbondBalance = useMemo(() => getDisplayBalance(fbondBalance), [fbondBalance]);
+  const displayFbondBalance = useMemo(() => getDisplayBalance(fbondBalance), [fbondBalance]);
+
+  // const avaxBalance = useTokenBalance(frostFinance.AVAX);
+  // const displayAvaxBalance = useMemo(() => getDisplayBalance(avaxBalance), [avaxBalance]);
 
   return (
     <Modal>
@@ -37,7 +40,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
         <StyledBalanceWrapper>
           <TokenSymbol symbol="FSHARE" />
           <StyledBalance>
-            <StyledValue>{displayTshareBalance}</StyledValue>
+            <StyledValue>{displayFshareBalance}</StyledValue>
             <Label text="FSHARE Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
@@ -45,10 +48,18 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
         <StyledBalanceWrapper>
           <TokenSymbol symbol="FBOND" />
           <StyledBalance>
-            <StyledValue>{displayTbondBalance}</StyledValue>
+            <StyledValue>{displayFbondBalance}</StyledValue>
             <Label text="FBOND Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
+
+        {/* <StyledBalanceWrapper>
+          <TokenSymbol symbol="WAVAX" />
+          <StyledBalance>
+            <StyledValue>{displayAvaxBalance}</StyledValue>
+            <Label text="AVAX Available" />
+          </StyledBalance>
+        </StyledBalanceWrapper> */}
       </Balances>
     </Modal>
   );

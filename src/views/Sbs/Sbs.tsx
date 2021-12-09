@@ -35,8 +35,8 @@ const Sbs: React.FC = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
   const frostFinance = useFrostFinance();
-  const [fbondAmount, setTbondAmount] = useState('');
-  const [fshareAmount, setTshareAmount] = useState('');
+  const [fbondAmount, setFbondAmount] = useState('');
+  const [fshareAmount, setFshareAmount] = useState('');
 
   const [approveStatus, approve] = useApprove(frostFinance.FBOND, frostFinance.contracts.FShareSwapper.address);
   const { onSwapFShare } = useSwapFBondToFShare();
@@ -47,41 +47,41 @@ const Sbs: React.FC = () => {
 
   const handleFBondChange = async (e: any) => {
     if (e.currentTarget.value === '') {
-      setTbondAmount('');
-      setTshareAmount('');
+      setFbondAmount('');
+      setFshareAmount('');
       return
     }
     if (!isNumeric(e.currentTarget.value)) return;
-    setTbondAmount(e.currentTarget.value);
+    setFbondAmount(e.currentTarget.value);
     const updateFShareAmount = await frostFinance.estimateAmountOfFShare(e.currentTarget.value);
-    setTshareAmount(updateFShareAmount);  
+    setFshareAmount(updateFShareAmount);  
   };
 
   const handleFBondSelectMax = async () => {
-    setTbondAmount(String(bondBalance));
+    setFbondAmount(String(bondBalance));
     const updateFShareAmount = await frostFinance.estimateAmountOfFShare(String(bondBalance));
-    setTshareAmount(updateFShareAmount); 
+    setFshareAmount(updateFShareAmount); 
   };
 
   const handleFShareSelectMax = async () => {
-    setTshareAmount(String(fshareBalance));
+    setFshareAmount(String(fshareBalance));
     const rateFSharePerFrost = (await frostFinance.getFShareSwapperStat(account)).rateFSharePerFrost;
     const updateFBondAmount = ((BigNumber.from(10).pow(30)).div(BigNumber.from(rateFSharePerFrost))).mul(Number(fshareBalance) * 1e6);
-    setTbondAmount(getDisplayBalance(updateFBondAmount, 18, 6));
+    setFbondAmount(getDisplayBalance(updateFBondAmount, 18, 6));
   };
 
   const handleFShareChange = async (e: any) => {
     const inputData = e.currentTarget.value;
     if (inputData === '') {
-      setTshareAmount('');
-      setTbondAmount('');
+      setFshareAmount('');
+      setFbondAmount('');
       return
     }
     if (!isNumeric(inputData)) return;
-    setTshareAmount(inputData);
+    setFshareAmount(inputData);
     const rateFSharePerFrost = (await frostFinance.getFShareSwapperStat(account)).rateFSharePerFrost;
     const updateFBondAmount = ((BigNumber.from(10).pow(30)).div(BigNumber.from(rateFSharePerFrost))).mul(Number(inputData) * 1e6);
-    setTbondAmount(getDisplayBalance(updateFBondAmount, 18, 6));
+    setFbondAmount(getDisplayBalance(updateFBondAmount, 18, 6));
   }
 
   return (

@@ -532,14 +532,14 @@ export class FrostFinance {
   async getWAVAXPriceFromPancakeswap(): Promise<string> {
     const ready = await this.provider.ready;
     if (!ready) return;
-    const { WAVAX, FUSDT } = this.externalTokens;
+    const { WAVAX, USDTE } = this.externalTokens;
     try {
-      const fusdt_wavax_lp_pair = this.externalTokens['USDT-AVAX-LP'];
-      let avax_amount_BN = await WAVAX.balanceOf(fusdt_wavax_lp_pair.address);
+      const usdte_wavax_lp_pair = this.externalTokens['USDT-AVAX-LP'];
+      let avax_amount_BN = await WAVAX.balanceOf(usdte_wavax_lp_pair.address);
       let avax_amount = Number(getFullDisplayBalance(avax_amount_BN, WAVAX.decimal));
-      let fusdt_amount_BN = await FUSDT.balanceOf(fusdt_wavax_lp_pair.address);
-      let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, FUSDT.decimal));
-      return (fusdt_amount / avax_amount).toString();
+      let usdte_amount_BN = await USDTE.balanceOf(usdte_wavax_lp_pair.address);
+      let usdte_amount = Number(getFullDisplayBalance(usdte_amount_BN, USDTE.decimal));
+      return (usdte_amount / avax_amount).toString();
     } catch (err) {
       console.error(`Failed to fetch token price of WAVAX: ${err}`);
     }

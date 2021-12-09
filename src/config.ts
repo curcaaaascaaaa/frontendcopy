@@ -137,11 +137,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 6,
     closedForStaking: false,
   },
-  TshareAvaxLPFShareRewardPool: {
+  FshareAvaxLPFShareRewardPool: {
     name: 'Earn FSHARE by FSHARE-AVAX LP',
     poolId: 1,
     sectionInUI: 2,
-    contract: 'TshareAvaxLPFShareRewardPool',
+    contract: 'FshareAvaxLPFShareRewardPool',
     depositTokenName: 'FSHARE-AVAX-LP',
     earnTokenName: 'FSHARE',
     finished: false,
