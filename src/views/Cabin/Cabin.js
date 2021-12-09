@@ -9,20 +9,20 @@ import { Alert } from '@material-ui/lab';
 
 import UnlockWallet from '../../components/UnlockWallet';
 import Page from '../../components/Page';
-import CemeteryCard from './CemeteryCard';
-import CemeteryImage from '../../assets/img/cemetery.png';
+import CabinCard from './CabinCard';
+import CabinImage from '../../assets/img/cabin.png';
 import { createGlobalStyle } from 'styled-components';
 
 import useBanks from '../../hooks/useBanks';
 
 const BackgroundImage = createGlobalStyle`
   body {
-    background: url(${CemeteryImage}) no-repeat !important;
+    background: url(${CabinImage}) no-repeat !important;
     background-size: cover !important;
   }
 `;
 
-const Cemetery = () => {
+const Cabin = () => {
   const [banks] = useBanks();
   const { path } = useRouteMatch();
   const { account } = useWallet();
@@ -35,20 +35,20 @@ const Cemetery = () => {
           {!!account ? (
             <Container maxWidth="lg">
               <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-                Cemetery
+                Cabin
               </Typography>
 
               <Box mt={5}>
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom>
-                    Earn TSHARE by staking LP
+                    Earn FSHARE by staking LP
                   </Typography>
                   <Grid container spacing={3}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 2)
                       .map((bank) => (
                         <React.Fragment key={bank.name}>
-                          <CemeteryCard bank={bank} />
+                          <CabinCard bank={bank} />
                         </React.Fragment>
                       ))}
                   </Grid>
@@ -56,7 +56,7 @@ const Cemetery = () => {
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
-                    Earn TOMB by staking LP
+                    Earn FROST by staking LP
                   </Typography>
                   <Alert variant="filled" severity="warning">
                     All below pools have ended. Please unstake and collect your rewards.
@@ -66,7 +66,7 @@ const Cemetery = () => {
                       .filter((bank) => bank.sectionInUI === 1)
                       .map((bank) => (
                         <React.Fragment key={bank.name}>
-                          <CemeteryCard bank={bank} />
+                          <CabinCard bank={bank} />
                         </React.Fragment>
                       ))}
                   </Grid>
@@ -81,7 +81,7 @@ const Cemetery = () => {
                       .filter((bank) => bank.sectionInUI === 0)
                       .map((bank) => (
                         <React.Fragment key={bank.name}>
-                          <CemeteryCard bank={bank} />
+                          <CabinCard bank={bank} />
                         </React.Fragment>
                       ))}
                   </Grid>
@@ -101,4 +101,4 @@ const Cemetery = () => {
   );
 };
 
-export default Cemetery;
+export default Cabin;

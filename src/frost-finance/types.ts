@@ -27,7 +27,7 @@ export type PoolStats = {
 };
 
 export type TokenStat = {
-  tokenInFtm: string;
+  tokenInAvax: string;
   priceInDollars: string;
   totalSupply: string;
   circulatingSupply: string;
@@ -35,7 +35,7 @@ export type TokenStat = {
 
 export type LPStat = {
   tokenAmount: string;
-  ftmAmount: string;
+  avaxAmount: string;
   priceOfOne: string;
   totalLiquidity: string;
   totalSupply: string;
@@ -46,10 +46,10 @@ export type AllocationTime = {
   to: Date;
 };
 
-export type TShareSwapperStat = {
-  tshareBalance: string;
-  tbondBalance: string;
-  // tombPrice: string;
-  // tsharePrice: string;
-  rateTSharePerTomb: string;
+export type FShareSwapperStat = {
+  fshareBalance: string;
+  fbondBalance: string;
+  // frostPrice: string;
+  // fsharePrice: string;
+  rateFSharePerFrost: string;
 };

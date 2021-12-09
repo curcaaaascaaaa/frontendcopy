@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
-import useTombFinance from './useTombFinance';
+import useFrostFinance from './useFrostFinance';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 
 const useHarvestFromMasonry = () => {
-  const tombFinance = useTombFinance();
+  const frostFinance = useFrostFinance();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleReward = useCallback(() => {
-    handleTransactionReceipt(tombFinance.harvestCashFromMasonry(), 'Claim TOMB from Masonry');
-  }, [tombFinance, handleTransactionReceipt]);
+    handleTransactionReceipt(frostFinance.harvestCashFromMasonry(), 'Claim FROST from Masonry');
+  }, [frostFinance, handleTransactionReceipt]);
 
   return { onReward: handleReward };
 };

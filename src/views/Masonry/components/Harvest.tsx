@@ -12,18 +12,18 @@ import useClaimRewardCheck from '../../../hooks/masonry/useClaimRewardCheck';
 import ProgressCountdown from './../components/ProgressCountdown';
 import useHarvestFromMasonry from '../../../hooks/useHarvestFromMasonry';
 import useEarningsOnMasonry from '../../../hooks/useEarningsOnMasonry';
-import useTombStats from '../../../hooks/useTombStats';
+import useFrostStats from '../../../hooks/useFrostStats';
 import { getDisplayBalance } from '../../../utils/formatBalance';
 
 const Harvest: React.FC = () => {
-  const tombStats = useTombStats();
+  const frostStats = useFrostStats();
   const { onReward } = useHarvestFromMasonry();
   const earnings = useEarningsOnMasonry();
   const canClaimReward = useClaimRewardCheck();
 
   const tokenPriceInDollars = useMemo(
-    () => (tombStats ? Number(tombStats.priceInDollars).toFixed(2) : null),
-    [tombStats],
+    () => (frostStats ? Number(frostStats.priceInDollars).toFixed(2) : null),
+    [frostStats],
   );
 
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
@@ -37,11 +37,11 @@ const Harvest: React.FC = () => {
           <StyledCardContentInner>
             <StyledCardHeader>
               <CardIcon>
-                <TokenSymbol symbol="TOMB" />
+                <TokenSymbol symbol="FROST" />
               </CardIcon>
               <Value value={getDisplayBalance(earnings)} />
               <Label text={`≈ $${earnedInDollars}`} />
-              <Label text="TOMB Earned" />
+              <Label text="FROST Earned" />
             </StyledCardHeader>
             <StyledCardActions>
               <Button

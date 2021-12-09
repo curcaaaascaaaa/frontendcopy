@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
-import useTombFinance from './../useTombFinance';
+import useFrostFinance from './../useFrostFinance';
 import useRefresh from '../useRefresh';
 
 const useWithdrawCheck = () => {
   const [canWithdraw, setCanWithdraw] = useState(false);
-  const tombFinance = useTombFinance();
+  const frostFinance = useFrostFinance();
   const { slowRefresh } = useRefresh();
-  const isUnlocked = tombFinance?.isUnlocked;
+  const isUnlocked = frostFinance?.isUnlocked;
 
   useEffect(() => {
     async function canUserWithdraw() {
       try {
-        setCanWithdraw(await tombFinance.canUserUnstakeFromMasonry());
+        setCanWithdraw(await frostFinance.canUserUnstakeFromMasonry());
       } catch (err) {
         console.error(err);
       }
@@ -19,7 +19,7 @@ const useWithdrawCheck = () => {
     if (isUnlocked) {
       canUserWithdraw();
     }
-  }, [isUnlocked, tombFinance, slowRefresh]);
+  }, [isUnlocked, frostFinance, slowRefresh]);
 
   return canWithdraw;
 };

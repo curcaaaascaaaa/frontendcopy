@@ -47,7 +47,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   width: 56px;
   &:hover {
     // background-color: ${(props) => props.theme.color.grey[800]};
-    background-color: #2c2560;
+    background-color: #be0011;
   }
 `;
 

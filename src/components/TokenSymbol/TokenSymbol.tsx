@@ -1,34 +1,34 @@
 import React from 'react';
 
 //Graveyard ecosystem logos
-import tombLogo from '../../assets/img/crypto_tomb_cash.svg';
-import tShareLogo from '../../assets/img/crypto_tomb_share.svg';
-import tombLogoPNG from '../../assets/img/crypto_tomb_cash.f2b44ef4.png';
-import tShareLogoPNG from '../../assets/img/crypto_tomb_share.bf1a6c52.png';
-import tBondLogo from '../../assets/img/crypto_tomb_bond.svg';
+import frostLogo from '../../assets/img/crypto_snow_cash.svg';
+import fShareLogo from '../../assets/img/crypto_snow_share.svg';
+import frostLogoPNG from '../../assets/img/crypto_frost_cash.f2b44ef4.png';
+import fShareLogoPNG from '../../assets/img/crypto_frost_share.bf1a6c52.png';
+import fBondLogo from '../../assets/img/crypto_snow_bond.svg';
 
-import tombFtmLpLogo from '../../assets/img/tomb_ftm_lp.png';
-import tshareFtmLpLogo from '../../assets/img/tshare_ftm_lp.png';
+import frostAvaxLpLogo from '../../assets/img/frost_avax_lp.svg';
+import fshareAvaxLpLogo from '../../assets/img/fshare_avax_lp.svg';
 
-import wftmLogo from '../../assets/img/ftm_logo_blue.svg';
-import booLogo from '../../assets/img/spooky.png';
+import wavaxLogo from '../../assets/img/avalanche_avax_logo.svg';
+import joeLogo from '../../assets/img/joe.png';
 import zooLogo from '../../assets/img/zoo_logo.svg';
 import shibaLogo from '../../assets/img/shiba_logo.svg';
 
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
   //=====================
-  TOMB: tombLogo,
-  TOMBPNG: tombLogoPNG,
-  TSHAREPNG: tShareLogoPNG,
-  TSHARE: tShareLogo,
-  TBOND: tBondLogo,
-  WFTM: wftmLogo,
-  BOO: booLogo,
+  FROST: frostLogo,
+  FROSTPNG: frostLogoPNG,
+  FSHAREPNG: fShareLogoPNG,
+  FSHARE: fShareLogo,
+  FBOND: fBondLogo,
+  WAVAX: wavaxLogo,
+  JOE: joeLogo,
   SHIBA: shibaLogo,
   ZOO: zooLogo,
-  'TOMB-FTM-LP': tombFtmLpLogo,
-  'TSHARE-FTM-LP': tshareFtmLpLogo,
+  'FROST-AVAX-LP': frostAvaxLpLogo,
+  'FSHARE-AVAX-LP': fshareAvaxLpLogo,
 };
 
 type LogoProps = {

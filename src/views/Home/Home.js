@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Page from '../../components/Page';
-import HomeImage from '../../assets/img/home.png';
-import CashImage from '../../assets/img/crypto_tomb_cash.svg';
+import HomeImage from '../../assets/img/home-avax.png';
+import CashImage from '../../assets/img/crypto_snow_cash.svg';
 import Image from 'material-ui-image';
 import styled from 'styled-components';
 import { Alert } from '@material-ui/lab';
@@ -9,15 +9,15 @@ import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
 import CardIcon from '../../components/CardIcon';
 import TokenSymbol from '../../components/TokenSymbol';
-import useTombStats from '../../hooks/useTombStats';
+import useFrostStats from '../../hooks/useFrostStats';
 import useLpStats from '../../hooks/useLpStats';
 import useModal from '../../hooks/useModal';
 import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
-import usetShareStats from '../../hooks/usetShareStats';
+import usefShareStats from '../../hooks/usefShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import { tomb as tombTesting, tShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
-import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
+import { frost as frostTesting, fShare as fShareTesting } from '../../frost-finance/deployments/deployments.testing.json';
+import { frost as frostProd, fShare as fShareProd } from '../../frost-finance/deployments/deployments.mainnet.json';
 
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 
@@ -25,7 +25,7 @@ import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
 import ZapModal from '../Bank/components/ZapModal';
 
 import { makeStyles } from '@material-ui/core/styles';
-import useTombFinance from '../../hooks/useTombFinance';
+import useFrostFinance from '../../hooks/useFrostFinance';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -45,78 +45,78 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
-  const tombStats = useTombStats();
-  const tShareStats = usetShareStats();
-  const tBondStats = useBondStats();
-  const tombFinance = useTombFinance();
+  const frostAvaxLpStats = useLpStats('FROST-AVAX-LP');
+  const fShareAvaxLpStats = useLpStats('FSHARE-AVAX-LP');
+  const frostStats = useFrostStats();
+  const fShareStats = usefShareStats();
+  const fBondStats = useBondStats();
+  const frostFinance = useFrostFinance();
 
-  let tomb;
-  let tShare;
+  let frost;
+  let fShare;
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    tomb = tombTesting;
-    tShare = tShareTesting;
+    frost = frostTesting;
+    fShare = fShareTesting;
   } else {
-    tomb = tombProd;
-    tShare = tShareProd;
+    frost = frostProd;
+    fShare = fShareProd;
   }
 
-  const buyTombAddress = 'https://spookyswap.finance/swap?outputCurrency=' + tomb.address;
-  const buyTShareAddress = 'https://spookyswap.finance/swap?outputCurrency=' + tShare.address;
+  const buyFrostAddress = 'https://traderjoexyz.com/swap?outputCurrency=' + frost.address;
+  const buyFShareAddress = 'https://traderjoexyz.com/swap?outputCurrency=' + fShare.address;
 
-  const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
-  const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
-  const tombPriceInDollars = useMemo(
-    () => (tombStats ? Number(tombStats.priceInDollars).toFixed(2) : null),
-    [tombStats],
+  const frostLPStats = useMemo(() => (frostAvaxLpStats ? frostAvaxLpStats : null), [frostAvaxLpStats]);
+  const fshareLPStats = useMemo(() => (fShareAvaxLpStats ? fShareAvaxLpStats : null), [fShareAvaxLpStats]);
+  const frostPriceInDollars = useMemo(
+    () => (frostStats ? Number(frostStats.priceInDollars).toFixed(2) : null),
+    [frostStats],
   );
-  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(4) : null), [tombStats]);
-  const tombCirculatingSupply = useMemo(() => (tombStats ? String(tombStats.circulatingSupply) : null), [tombStats]);
-  const tombTotalSupply = useMemo(() => (tombStats ? String(tombStats.totalSupply) : null), [tombStats]);
+  const frostPriceInAVAX = useMemo(() => (frostStats ? Number(frostStats.tokenInAvax).toFixed(4) : null), [frostStats]);
+  const frostCirculatingSupply = useMemo(() => (frostStats ? String(frostStats.circulatingSupply) : null), [frostStats]);
+  const frostTotalSupply = useMemo(() => (frostStats ? String(frostStats.totalSupply) : null), [frostStats]);
 
-  const tSharePriceInDollars = useMemo(
-    () => (tShareStats ? Number(tShareStats.priceInDollars).toFixed(2) : null),
-    [tShareStats],
+  const fSharePriceInDollars = useMemo(
+    () => (fShareStats ? Number(fShareStats.priceInDollars).toFixed(2) : null),
+    [fShareStats],
   );
-  const tSharePriceInFTM = useMemo(
-    () => (tShareStats ? Number(tShareStats.tokenInFtm).toFixed(4) : null),
-    [tShareStats],
+  const fSharePriceInAVAX = useMemo(
+    () => (fShareStats ? Number(fShareStats.tokenInAvax).toFixed(4) : null),
+    [fShareStats],
   );
-  const tShareCirculatingSupply = useMemo(
-    () => (tShareStats ? String(tShareStats.circulatingSupply) : null),
-    [tShareStats],
+  const fShareCirculatingSupply = useMemo(
+    () => (fShareStats ? String(fShareStats.circulatingSupply) : null),
+    [fShareStats],
   );
-  const tShareTotalSupply = useMemo(() => (tShareStats ? String(tShareStats.totalSupply) : null), [tShareStats]);
+  const fShareTotalSupply = useMemo(() => (fShareStats ? String(fShareStats.totalSupply) : null), [fShareStats]);
 
-  const tBondPriceInDollars = useMemo(
-    () => (tBondStats ? Number(tBondStats.priceInDollars).toFixed(2) : null),
-    [tBondStats],
+  const fBondPriceInDollars = useMemo(
+    () => (fBondStats ? Number(fBondStats.priceInDollars).toFixed(2) : null),
+    [fBondStats],
   );
-  const tBondPriceInFTM = useMemo(() => (tBondStats ? Number(tBondStats.tokenInFtm).toFixed(4) : null), [tBondStats]);
-  const tBondCirculatingSupply = useMemo(
-    () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
-    [tBondStats],
+  const fBondPriceInAVAX = useMemo(() => (fBondStats ? Number(fBondStats.tokenInAvax).toFixed(4) : null), [fBondStats]);
+  const fBondCirculatingSupply = useMemo(
+    () => (fBondStats ? String(fBondStats.circulatingSupply) : null),
+    [fBondStats],
   );
-  const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
+  const fBondTotalSupply = useMemo(() => (fBondStats ? String(fBondStats.totalSupply) : null), [fBondStats]);
 
-  const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'TSHARE-FTM-LP' });
+  const frostLpZap = useZap({ depositTokenName: 'FROST-AVAX-LP' });
+  const fshareLpZap = useZap({ depositTokenName: 'FSHARE-AVAX-LP' });
 
   const StyledLink = styled.a`
     font-weight: 700;
     text-decoration: none;
   `;
 
-  const [onPresentTombZap, onDissmissTombZap] = useModal(
+  const [onPresentFrostZap, onDissmissFrostZap] = useModal(
     <ZapModal
       decimals={18}
       onConfirm={(zappingToken, tokenName, amount) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-        tombLpZap.onZap(zappingToken, tokenName, amount);
-        onDissmissTombZap();
+        frostLpZap.onZap(zappingToken, tokenName, amount);
+        onDissmissFrostZap();
       }}
-      tokenName={'TOMB-FTM-LP'}
+      tokenName={'FROST-AVAX-LP'}
     />,
   );
 
@@ -125,10 +125,10 @@ const Home = () => {
       decimals={18}
       onConfirm={(zappingToken, tokenName, amount) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-        tshareLpZap.onZap(zappingToken, tokenName, amount);
+        fshareLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTshareZap();
       }}
-      tokenName={'TSHARE-FTM-LP'}
+      tokenName={'FSHARE-AVAX-LP'}
     />,
   );
 
@@ -145,11 +145,11 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper>
             <Box p={4}>
-              <h2>Welcome to Tomb Finance</h2>
-              <p>The first algorithmic stablecoin on Fantom Opera, pegged to the price of 1 FTM via seigniorage.</p>
+              <h2>Welcome to Frost Finance</h2>
+              <p>The first algorithmic stablecoin on Avalanche, pegged to the price of 1 AVAX via seigniorage.</p>
               <p>
-                Stake your TOMB-FTM LP in the Cemetery to earn TSHARE rewards.
-                Then stake your earned TSHARE in the Masonry to earn more TOMB!
+                Stake your FROST-AVAX LP in the Cabin to earn FSHARE rewards.
+                Then stake your earned FSHARE in the Lodge to earn more FROST!
               </p>
             </Box>
           </Paper>
@@ -162,7 +162,7 @@ const Home = () => {
     <Grid item  xs={12} sm={12} justify="center"  style={{ margin: '12px', display: 'flex' }}>
             <Alert variant="filled" severity="warning">
               <b>
-      Please visit our <StyledLink target="_blank" href="https://docs.tomb.finance">documentation</StyledLink> before purchasing TOMB or TSHARE!</b>
+      Please visit our <StyledLink target="_blank" href="https://docs.frost.finance">documentation</StyledLink> before purchasing FROST or FSHARE!</b>
             </Alert>
         </Grid>
         </Grid>
@@ -185,34 +185,34 @@ const Home = () => {
               <Button color="primary" href="/masonry" variant="contained" style={{ marginRight: '10px' }}>
                 Stake Now
               </Button>
-              <Button href="/cemetery" variant="contained" style={{ marginRight: '10px' }}>
+              <Button href="/cabin" variant="contained" style={{ marginRight: '10px' }}>
                 Farm Now
               </Button>
               <Button
                 color="primary"
                 target="_blank"
-                href={buyTombAddress}
+                href={buyFrostAddress}
                 variant="contained"
                 style={{ marginRight: '10px' }}
                 className={classes.button}
               >
-                Buy TOMB
+                Buy FROST
               </Button>
-              <Button variant="contained" target="_blank" href={buyTShareAddress} className={classes.button}>
-                Buy TSHARE
+              <Button variant="contained" target="_blank" href={buyFShareAddress} className={classes.button}>
+                Buy FSHARE
               </Button>
             </CardContent>
           </Card>
         </Grid>
 
-        {/* TOMB */}
+        {/* FROST */}
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TOMB</h2>
+              <h2>FROST</h2>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TOMB');
+                  frostFinance.watchAssetInMetamask('FROST');
                 }}
                 color="primary"
                 variant="outlined"
@@ -223,35 +223,35 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TOMB" />
+                  <TokenSymbol symbol="FROST" />
                 </CardIcon>
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.----'} FTM</span>
+                <span style={{ fontSize: '30px' }}>{frostPriceInAVAX ? frostPriceInAVAX : '-.----'} AVAX</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
-                  ${tombPriceInDollars ? tombPriceInDollars : '-.--'}
+                  ${frostPriceInDollars ? frostPriceInDollars : '-.--'}
                 </span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(tombCirculatingSupply * tombPriceInDollars).toFixed(2)} <br />
-                Circulating Supply: {tombCirculatingSupply} <br />
-                Total Supply: {tombTotalSupply}
+                Market Cap: ${(frostCirculatingSupply * frostPriceInDollars).toFixed(2)} <br />
+                Circulating Supply: {frostCirculatingSupply} <br />
+                Total Supply: {frostTotalSupply}
               </span>
             </CardContent>
           </Card>
         </Grid>
 
-        {/* TSHARE */}
+        {/* FSHARE */}
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TSHARE</h2>
+              <h2>FSHARE</h2>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TSHARE');
+                  frostFinance.watchAssetInMetamask('FSHARE');
                 }}
                 color="primary"
                 variant="outlined"
@@ -262,33 +262,33 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TSHARE" />
+                  <TokenSymbol symbol="FSHARE" />
                 </CardIcon>
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tSharePriceInFTM ? tSharePriceInFTM : '-.----'} FTM</span>
+                <span style={{ fontSize: '30px' }}>{fSharePriceInAVAX ? fSharePriceInAVAX : '-.----'} AVAX</span>
               </Box>
               <Box>
-                <span style={{ fontSize: '16px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</span>
+                <span style={{ fontSize: '16px' }}>${fSharePriceInDollars ? fSharePriceInDollars : '-.--'}</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(tShareCirculatingSupply * tSharePriceInDollars).toFixed(2)} <br />
-                Circulating Supply: {tShareCirculatingSupply} <br />
-                Total Supply: {tShareTotalSupply}
+                Market Cap: ${(fShareCirculatingSupply * fSharePriceInDollars).toFixed(2)} <br />
+                Circulating Supply: {fShareCirculatingSupply} <br />
+                Total Supply: {fShareTotalSupply}
               </span>
             </CardContent>
           </Card>
         </Grid>
 
-        {/* TBOND */}
+        {/* FBOND */}
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TBOND</h2>
+              <h2>FBOND</h2>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TBOND');
+                  frostFinance.watchAssetInMetamask('FBOND');
                 }}
                 color="primary"
                 variant="outlined"
@@ -299,20 +299,20 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TBOND" />
+                  <TokenSymbol symbol="FBOND" />
                 </CardIcon>
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tBondPriceInFTM ? tBondPriceInFTM : '-.----'} FTM</span>
+                <span style={{ fontSize: '30px' }}>{fBondPriceInAVAX ? fBondPriceInAVAX : '-.----'} AVAX</span>
               </Box>
               <Box>
-                <span style={{ fontSize: '16px' }}>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}</span>
+                <span style={{ fontSize: '16px' }}>${fBondPriceInDollars ? fBondPriceInDollars : '-.--'}</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(tBondCirculatingSupply * tBondPriceInDollars).toFixed(2)} <br />
-                Circulating Supply: {tBondCirculatingSupply} <br />
-                Total Supply: {tBondTotalSupply}
+                Market Cap: ${(fBondCirculatingSupply * fBondPriceInDollars).toFixed(2)} <br />
+                Circulating Supply: {fBondCirculatingSupply} <br />
+                Total Supply: {fBondTotalSupply}
               </span>
             </CardContent>
           </Card>
@@ -320,27 +320,27 @@ const Home = () => {
         <Grid item xs={12} sm={6}>
           <Card>
             <CardContent align="center">
-              <h2>TOMB-FTM Spooky LP</h2>
+              <h2>FROST-AVAX Chilly LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TOMB-FTM-LP" />
+                  <TokenSymbol symbol="FROST-AVAX-LP" />
                 </CardIcon>
               </Box>
               <Box mt={2}>
-                <Button color="primary" disabled={true} onClick={onPresentTombZap} variant="contained">
+                <Button color="primary" onClick={onPresentFrostZap} variant="contained">
                   Zap In
                 </Button>
               </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} TOMB /{' '}
-                  {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} FTM
+                  {frostLPStats?.tokenAmount ? frostLPStats?.tokenAmount : '-.--'} FROST /{' '}
+                  {frostLPStats?.avaxAmount ? frostLPStats?.avaxAmount : '-.--'} AVAX
                 </span>
               </Box>
-              <Box>${tombLPStats?.priceOfOne ? tombLPStats.priceOfOne : '-.--'}</Box>
+              <Box>${frostLPStats?.priceOfOne ? frostLPStats.priceOfOne : '-.--'}</Box>
               <span style={{ fontSize: '12px' }}>
-                Liquidity: ${tombLPStats?.totalLiquidity ? tombLPStats.totalLiquidity : '-.--'} <br />
-                Total supply: {tombLPStats?.totalSupply ? tombLPStats.totalSupply : '-.--'}
+                Liquidity: ${frostLPStats?.totalLiquidity ? frostLPStats.totalLiquidity : '-.--'} <br />
+                Total supply: {frostLPStats?.totalSupply ? frostLPStats.totalSupply : '-.--'}
               </span>
             </CardContent>
           </Card>
@@ -348,10 +348,10 @@ const Home = () => {
         <Grid item xs={12} sm={6}>
           <Card>
             <CardContent align="center">
-              <h2>TSHARE-FTM Spooky LP</h2>
+              <h2>FSHARE-AVAX Chilly LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TSHARE-FTM-LP" />
+                  <TokenSymbol symbol="FSHARE-AVAX-LP" />
                 </CardIcon>
               </Box>
               <Box mt={2}>
@@ -361,15 +361,15 @@ const Home = () => {
               </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} TSHARE /{' '}
-                  {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} FTM
+                  {fshareLPStats?.tokenAmount ? fshareLPStats?.tokenAmount : '-.--'} FSHARE /{' '}
+                  {fshareLPStats?.avaxAmount ? fshareLPStats?.avaxAmount : '-.--'} AVAX
                 </span>
               </Box>
-              <Box>${tshareLPStats?.priceOfOne ? tshareLPStats.priceOfOne : '-.--'}</Box>
+              <Box>${fshareLPStats?.priceOfOne ? fshareLPStats.priceOfOne : '-.--'}</Box>
               <span style={{ fontSize: '12px' }}>
-                Liquidity: ${tshareLPStats?.totalLiquidity ? tshareLPStats.totalLiquidity : '-.--'}
+                Liquidity: ${fshareLPStats?.totalLiquidity ? fshareLPStats.totalLiquidity : '-.--'}
                 <br />
-                Total supply: {tshareLPStats?.totalSupply ? tshareLPStats.totalSupply : '-.--'}
+                Total supply: {fshareLPStats?.totalSupply ? fshareLPStats.totalSupply : '-.--'}
               </span>
             </CardContent>
           </Card>

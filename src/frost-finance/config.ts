@@ -1,10 +1,11 @@
 import { Deployments } from './deployments';
-import { ChainId } from '@spookyswap/sdk';
+// import { ChainId } from '@spookyswap/sdk';
+import { ChainId } from '@traderjoe-xyz/sdk';
 
 export type Configuration = {
   chainId: ChainId;
   networkName: string;
-  ftmscanUrl: string;
+  avaxscanUrl: string;
   defaultProvider: string;
   deployments: Deployments;
   externalTokens: { [contractName: string]: [string, number] };

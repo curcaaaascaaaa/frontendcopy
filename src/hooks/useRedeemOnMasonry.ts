@@ -1,15 +1,15 @@
 import { useCallback } from 'react';
-import useTombFinance from './useTombFinance';
+import useFrostFinance from './useFrostFinance';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 
 const useRedeemOnMasonry = (description?: string) => {
-  const tombFinance = useTombFinance();
+  const frostFinance = useFrostFinance();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleRedeem = useCallback(() => {
-    const alertDesc = description || 'Redeem TSHARE from Masonry';
-    handleTransactionReceipt(tombFinance.exitFromMasonry(), alertDesc);
-  }, [tombFinance, description, handleTransactionReceipt]);
+    const alertDesc = description || 'Redeem FSHARE from Masonry';
+    handleTransactionReceipt(frostFinance.exitFromMasonry(), alertDesc);
+  }, [frostFinance, description, handleTransactionReceipt]);
   return { onRedeem: handleRedeem };
 };
 

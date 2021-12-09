@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    color: '#e0e3bd',
-    'background-color': '#121212',
+    color: '#ffffff',
+    'background-color': '#e84142',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '10px',
     marginBottom: '3rem',
@@ -52,13 +52,13 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
   },
   toolbarTitle: {
-    fontFamily: '"Amarante", cursive',
+    fontFamily: '"Readex Pro", sans-serif',
     fontSize: '30px',
     flexGrow: 1,
   },
   link: {
     textTransform: 'uppercase',
-    color: '#e0e3bd',
+    color: '#ffffff',
     fontSize: '14px',
     margin: theme.spacing(1, 2),
     textDecoration: 'none',
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
   brandLink: {
     textDecoration: 'none',
-    color: '#e0e3bd',
+    color: '#ffffff',
     '&:hover': {
       textDecoration: 'none',
     },
@@ -95,34 +95,34 @@ const Nav = () => {
         {matches ? (
           <>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-              {/* <a className={ classes.brandLink } href="/">Tomb Finance</a> */}
+              {/* <a className={ classes.brandLink } href="/">Frost Finance</a> */}
               <Link to="/" color="inherit" className={classes.brandLink}>
-                Tomb Finance
+                Frost Finance
               </Link>
             </Typography>
             <Box mr={5}>
               <Link color="textPrimary" to="/" className={classes.link}>
                 Home
               </Link>
-              <Link color="textPrimary" to="/cemetery" className={classes.link}>
-                Cemetery
+              <Link color="textPrimary" to="/cabin" className={classes.link}>
+                Cabin
               </Link>
               <Link color="textPrimary" to="/masonry" className={classes.link}>
-                Masonry
+                Lodge
               </Link>
-              <Link color="textPrimary" to="/pit" className={classes.link}>
+              {/* <Link color="textPrimary" to="/pit" className={classes.link}>
                 Pit
               </Link>
               <Link color="textPrimary" to="/sbs" className={classes.link}>
                 SBS
-              </Link>
+              </Link> */}
               <Link color="textPrimary" to="/liquidity" className={classes.link}>
                 Liquidity
               </Link>
-              <Link color="textPrimary" to="/regulations" className={classes.link}>
+              {/* <Link color="textPrimary" to="/regulations" className={classes.link}>
                 Regulations
-              </Link>
-              <a href="https://docs.tomb.finance" className={classes.link}>
+              </Link> */}
+              <a href="https://docs.frost.finance" className={classes.link}>
                 Docs
               </a>
             </Box>
@@ -140,7 +140,7 @@ const Nav = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              Tomb Finance
+              Frost Finance
             </Typography>
 
             <Drawer
@@ -162,13 +162,13 @@ const Nav = () => {
               <Divider />
               <List>
                 <ListItemLink primary="Home" to="/" />
-                <ListItemLink primary="Cemetery" to="/cemetery" />
+                <ListItemLink primary="Cabin" to="/cabin" />
                 <ListItemLink primary="Masonry" to="/masonry" />
                 <ListItemLink primary="Pit" to="/pit" />
                 <ListItemLink primary="SBS" to="/sbs" />
                 <ListItemLink primary="Liquidity" to="/liquidity" />
                 <ListItemLink primary="Regulations" to="/regulations" />
-                <ListItem button component="a" href="https://docs.tomb.finance">
+                <ListItem button component="a" href="https://docs.frost.finance">
                   <ListItemText>Docs</ListItemText>
                 </ListItem>
                 <ListItem style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

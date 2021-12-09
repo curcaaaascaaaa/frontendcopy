@@ -9,12 +9,12 @@ import PageHeader from '../../components/PageHeader';
 import { Box,/* Paper, Typography,*/ Button, Grid } from '@material-ui/core';
 import styled from 'styled-components';
 import Spacer from '../../components/Spacer';
-import useTombFinance from '../../hooks/useTombFinance';
+import useFrostFinance from '../../hooks/useFrostFinance';
 import { getDisplayBalance/*, getBalance*/ } from '../../utils/formatBalance';
 import { BigNumber/*, ethers*/ } from 'ethers';
-import useSwapTBondToTShare from '../../hooks/TShareSwapper/useSwapTBondToTShare';
+import useSwapFBondToFShare from '../../hooks/FShareSwapper/useSwapFBondToFShare';
 import useApprove, { ApprovalState } from '../../hooks/useApprove';
-import useTShareSwapperStats from '../../hooks/TShareSwapper/useTShareSwapperStats';
+import useFShareSwapperStats from '../../hooks/FShareSwapper/useFShareSwapperStats';
 import TokenInput from '../../components/TokenInput';
 import Card from '../../components/Card';
 import CardContent from '../../components/CardContent';
@@ -34,18 +34,18 @@ function isNumeric(n: any) {
 const Sbs: React.FC = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
-  const tombFinance = useTombFinance();
-  const [tbondAmount, setTbondAmount] = useState('');
-  const [tshareAmount, setTshareAmount] = useState('');
+  const frostFinance = useFrostFinance();
+  const [fbondAmount, setTbondAmount] = useState('');
+  const [fshareAmount, setTshareAmount] = useState('');
 
-  const [approveStatus, approve] = useApprove(tombFinance.TBOND, tombFinance.contracts.TShareSwapper.address);
-  const { onSwapTShare } = useSwapTBondToTShare();
-  const tshareSwapperStat = useTShareSwapperStats(account);
+  const [approveStatus, approve] = useApprove(frostFinance.FBOND, frostFinance.contracts.FShareSwapper.address);
+  const { onSwapFShare } = useSwapFBondToFShare();
+  const fshareSwapperStat = useFShareSwapperStats(account);
 
-  const tshareBalance = useMemo(() => (tshareSwapperStat ? Number(tshareSwapperStat.tshareBalance) : 0), [tshareSwapperStat]);
-  const bondBalance = useMemo(() => (tshareSwapperStat ? Number(tshareSwapperStat.tbondBalance) : 0), [tshareSwapperStat]);
+  const fshareBalance = useMemo(() => (fshareSwapperStat ? Number(fshareSwapperStat.fshareBalance) : 0), [fshareSwapperStat]);
+  const bondBalance = useMemo(() => (fshareSwapperStat ? Number(fshareSwapperStat.fbondBalance) : 0), [fshareSwapperStat]);
 
-  const handleTBondChange = async (e: any) => {
+  const handleFBondChange = async (e: any) => {
     if (e.currentTarget.value === '') {
       setTbondAmount('');
       setTshareAmount('');
@@ -53,24 +53,24 @@ const Sbs: React.FC = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setTbondAmount(e.currentTarget.value);
-    const updateTShareAmount = await tombFinance.estimateAmountOfTShare(e.currentTarget.value);
-    setTshareAmount(updateTShareAmount);  
+    const updateFShareAmount = await frostFinance.estimateAmountOfFShare(e.currentTarget.value);
+    setTshareAmount(updateFShareAmount);  
   };
 
-  const handleTBondSelectMax = async () => {
+  const handleFBondSelectMax = async () => {
     setTbondAmount(String(bondBalance));
-    const updateTShareAmount = await tombFinance.estimateAmountOfTShare(String(bondBalance));
-    setTshareAmount(updateTShareAmount); 
+    const updateFShareAmount = await frostFinance.estimateAmountOfFShare(String(bondBalance));
+    setTshareAmount(updateFShareAmount); 
   };
 
-  const handleTShareSelectMax = async () => {
-    setTshareAmount(String(tshareBalance));
-    const rateTSharePerTomb = (await tombFinance.getTShareSwapperStat(account)).rateTSharePerTomb;
-    const updateTBondAmount = ((BigNumber.from(10).pow(30)).div(BigNumber.from(rateTSharePerTomb))).mul(Number(tshareBalance) * 1e6);
-    setTbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
+  const handleFShareSelectMax = async () => {
+    setTshareAmount(String(fshareBalance));
+    const rateFSharePerFrost = (await frostFinance.getFShareSwapperStat(account)).rateFSharePerFrost;
+    const updateFBondAmount = ((BigNumber.from(10).pow(30)).div(BigNumber.from(rateFSharePerFrost))).mul(Number(fshareBalance) * 1e6);
+    setTbondAmount(getDisplayBalance(updateFBondAmount, 18, 6));
   };
 
-  const handleTShareChange = async (e: any) => {
+  const handleFShareChange = async (e: any) => {
     const inputData = e.currentTarget.value;
     if (inputData === '') {
       setTshareAmount('');
@@ -79,9 +79,9 @@ const Sbs: React.FC = () => {
     }
     if (!isNumeric(inputData)) return;
     setTshareAmount(inputData);
-    const rateTSharePerTomb = (await tombFinance.getTShareSwapperStat(account)).rateTSharePerTomb;
-    const updateTBondAmount = ((BigNumber.from(10).pow(30)).div(BigNumber.from(rateTSharePerTomb))).mul(Number(inputData) * 1e6);
-    setTbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
+    const rateFSharePerFrost = (await frostFinance.getFShareSwapperStat(account)).rateFSharePerFrost;
+    const updateFBondAmount = ((BigNumber.from(10).pow(30)).div(BigNumber.from(rateFSharePerFrost))).mul(Number(inputData) * 1e6);
+    setTbondAmount(getDisplayBalance(updateFBondAmount, 18, 6));
   }
 
   return (
@@ -91,7 +91,7 @@ const Sbs: React.FC = () => {
         {!!account ? (
           <>
             <Route exact path={path}>
-              <PageHeader icon={'🏦'} title="TBond -> TShare Swap" subtitle="Swap TBond to TShare" />
+              <PageHeader icon={'🏦'} title="FBond -> FShare Swap" subtitle="Swap FBond to FShare" />
             </Route>
             <Box mt={5}>
               <Grid container justify="center" spacing={6}>
@@ -101,24 +101,24 @@ const Sbs: React.FC = () => {
                       <Card>
                         <CardContent>
                           <StyledCardContentInner>
-                            <StyledCardTitle>TBonds</StyledCardTitle>
+                            <StyledCardTitle>FBonds</StyledCardTitle>
                             <StyledExchanger>
                               <StyledToken>
                                 <StyledCardIcon>
-                                  <TokenSymbol symbol={tombFinance.TBOND.symbol} size={54} />
+                                  <TokenSymbol symbol={frostFinance.FBOND.symbol} size={54} />
                                 </StyledCardIcon>
                               </StyledToken>
                             </StyledExchanger>
                             <Grid item xs={12}>
                               <TokenInput
-                                onSelectMax={handleTBondSelectMax}
-                                onChange={handleTBondChange}
-                                value={tbondAmount}
+                                onSelectMax={handleFBondSelectMax}
+                                onChange={handleFBondChange}
+                                value={fbondAmount}
                                 max={bondBalance}
-                                symbol="TBond"
+                                symbol="FBond"
                               ></TokenInput>
                             </Grid>
-                            <StyledDesc>{`${bondBalance} TBOND Available in Wallet`}</StyledDesc>
+                            <StyledDesc>{`${bondBalance} FBOND Available in Wallet`}</StyledDesc>
                           </StyledCardContentInner>
                         </CardContent>
                       </Card>
@@ -128,24 +128,24 @@ const Sbs: React.FC = () => {
                       <Card>
                         <CardContent>
                           <StyledCardContentInner>
-                            <StyledCardTitle>TShare</StyledCardTitle>
+                            <StyledCardTitle>FShare</StyledCardTitle>
                             <StyledExchanger>
                               <StyledToken>
                                 <StyledCardIcon>
-                                  <TokenSymbol symbol={tombFinance.TSHARE.symbol} size={54} />
+                                  <TokenSymbol symbol={frostFinance.FSHARE.symbol} size={54} />
                                 </StyledCardIcon>
                               </StyledToken>
                             </StyledExchanger>
                             <Grid item xs={12}>
                               <TokenInput
-                                onSelectMax={handleTShareSelectMax}
-                                onChange={handleTShareChange}
-                                value={tshareAmount}
-                                max={tshareBalance}
-                                symbol="TShare"
+                                onSelectMax={handleFShareSelectMax}
+                                onChange={handleFShareChange}
+                                value={fshareAmount}
+                                max={fshareBalance}
+                                symbol="FShare"
                               ></TokenInput>
                             </Grid>
-                            <StyledDesc>{`${tshareBalance} TSHARE Available in Swapper`}</StyledDesc>
+                            <StyledDesc>{`${fshareBalance} FSHARE Available in Swapper`}</StyledDesc>
                           </StyledCardContentInner>
                         </CardContent>
                       </Card>
@@ -170,13 +170,13 @@ const Sbs: React.FC = () => {
                           onClick={approve}
                           size="medium"
                         >
-                          Approve TBOND
+                          Approve FBOND
                         </Button>
                       ) : (
                         <Button
                           color="primary"
                           variant="contained"
-                          onClick={() => onSwapTShare(tbondAmount.toString())}
+                          onClick={() => onSwapFShare(fbondAmount.toString())}
                           size="medium"
                         >
                           Swap

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '15px',
     width: '100%',
     color: 'white',
-    backgroundColor: '#121212',
+    backgroundColor: '#e84142',
     textAlign: 'center',
     height: '1.3rem',
     [theme.breakpoints.down('xs')]: {
@@ -45,14 +45,14 @@ const Footer = () => {
             <Typography variant="body2" color="textSecondary" align="left">
               {'Copyright © '}
               <Link color="inherit" href="/">
-                Tomb Finance
+                Frost Finance
               </Link>{' '}
               {new Date().getFullYear()}
             </Typography>
           </Grid>
           <Grid item xs={6} style={{ textAlign: 'right' }}>
             <a
-              href="https://twitter.com/tombfinance"
+              href="https://twitter.com/frostfinance"
               rel="noopener noreferrer"
               target="_blank"
               className={classes.link}
@@ -60,14 +60,14 @@ const Footer = () => {
               <img alt="twitter" src={TwitterImage} className={classes.img} />
             </a>
             <a
-              href="https://github.com/tombfinance/tombfinance-frontend"
+              href="https://github.com/frostfinance/frostfinance-frontend"
               rel="noopener noreferrer"
               target="_blank"
               className={classes.link}
             >
               <img alt="github" src={GithubImage} className={classes.img} />
             </a>
-            <a href="https://t.me/tombfinance" rel="noopener noreferrer" target="_blank" className={classes.link}>
+            <a href="https://t.me/frostfinance" rel="noopener noreferrer" target="_blank" className={classes.link}>
               <img alt="telegram" src={TelegramImage} className={classes.img} />
             </a>
             <a
@@ -78,7 +78,7 @@ const Footer = () => {
             >
               <img alt="youtube" src={YoutubeImage} className={classes.img} />
             </a>
-            <a href="http://discord.tomb.finance/" rel="noopener noreferrer" target="_blank" className={classes.link}>
+            <a href="http://discord.frost.finance/" rel="noopener noreferrer" target="_blank" className={classes.link}>
               <img alt="discord" src={DiscordImage} className={classes.img} />
             </a>
           </Grid>

@@ -6,7 +6,7 @@ import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import Page from '../../components/Page';
 import RegulationsImage from '../../assets/img/regulations_bg.png';
 import { createGlobalStyle } from 'styled-components';
-import useTombFinance from '../../hooks/useTombFinance';
+import useFrostFinance from '../../hooks/useFrostFinance';
 
 const BackgroundImage = createGlobalStyle`
   body, html {
@@ -18,12 +18,12 @@ const StyledTableCell = withStyles((theme) => ({
   head: {
     fontSize: 18,
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    color: '#2c2560',
+    color: '#be0011',
     fontWeight: 'bolder',
   },
   body: {
     fontSize: 14,
-    color: '#2c2560',
+    color: '#be0011',
   },
 }))(TableCell);
 const useStyles = makeStyles((theme) => ({
@@ -45,15 +45,15 @@ const StyledTableRow = withStyles((theme) => ({
 
 const Regulations = () => {
   const classes = useStyles();
-  const tombFinance = useTombFinance();
+  const frostFinance = useFrostFinance();
   const [rows, setRows] = useState(null);
   function createData(epoch, dao, dev, masonry, bondsBought, bondsRedeemed) {
     var sum = (Number(dao) + Number(dev) + Number(masonry)).toFixed(2);
     return { epoch, dao, dev, masonry, sum, bondsBought, bondsRedeemed };
   }
   useEffect(() => {
-    if (tombFinance) {
-      const thisData = tombFinance.listenForRegulationsEvents();
+    if (frostFinance) {
+      const thisData = frostFinance.listenForRegulationsEvents();
       thisData.then((elements) => {
         setRows(
           elements
@@ -71,7 +71,7 @@ const Regulations = () => {
         );
       });
     }
-  }, [tombFinance]);
+  }, [frostFinance]);
 
   return (
     <Page>
@@ -98,7 +98,7 @@ const Regulations = () => {
                 style={index % 2 ? { background: 'rgba(255,255,255,0.9)' } : { background: 'rgba(255,255,255,0.8)' }}
                 key={row.epoch}
               >
-                <StyledTableCell style={{ color: '#2c2560' }} align="center" component="th" scope="row">
+                <StyledTableCell style={{ color: '#be0011' }} align="center" component="th" scope="row">
                   {row.epoch}
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.masonry}</StyledTableCell>

@@ -6,7 +6,7 @@ import { ThemeProvider as TP1 } from 'styled-components';
 import { UseWalletProvider } from 'use-wallet';
 import usePromptNetwork from './hooks/useNetworkPrompt';
 import BanksProvider from './contexts/Banks';
-import TombFinanceProvider from './contexts/TombFinanceProvider';
+import FrostFinanceProvider from './contexts/FrostFinanceProvider';
 import ModalsProvider from './contexts/Modals';
 import store from './state';
 import theme from './theme';
@@ -19,7 +19,7 @@ import Regulations from './views/Regulations/Regulations';
 import { RefreshContextProvider } from './contexts/RefreshContext';
 
 const Home = lazy(() => import('./views/Home'));
-const Cemetery = lazy(() => import('./views/Cemetery'));
+const Cabin = lazy(() => import('./views/Cabin'));
 const Masonry = lazy(() => import('./views/Masonry'));
 const Pit = lazy(() => import('./views/Pit'));
 const SBS = lazy(() => import('./views/Sbs'));
@@ -49,8 +49,8 @@ const App: React.FC = () => {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/cemetery">
-              <Cemetery />
+            <Route path="/cabin">
+              <Cabin />
             </Route>
             <Route path="/masonry">
               <Masonry />
@@ -87,15 +87,15 @@ const Providers: React.FC = ({ children }) => {
             walletconnect: { rpcUrl: config.defaultProvider },
             walletlink: {
               url: config.defaultProvider,
-              appName: 'Tomb Finance',
-              appLogoUrl: 'https://github.com/tombfinance/tombfinance-assets/blob/master/logo_tomb_NoBG.png',
+              appName: 'Frost Finance',
+              appLogoUrl: 'https://github.com/frostfinance/frostfinance-assets/blob/master/logo_frost_NoBG.png',
             },
           }}
         >
           <Provider store={store}>
             <Updaters />
             <RefreshContextProvider>
-              <TombFinanceProvider>
+              <FrostFinanceProvider>
                 <ModalsProvider>
                   <BanksProvider>
                     <>
@@ -104,7 +104,7 @@ const Providers: React.FC = ({ children }) => {
                     </>
                   </BanksProvider>
                 </ModalsProvider>
-              </TombFinanceProvider>
+              </FrostFinanceProvider>
             </RefreshContextProvider>
           </Provider>
         </UseWalletProvider>

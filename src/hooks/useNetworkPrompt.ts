@@ -19,12 +19,12 @@ const usePromptNetwork = () => {
           chainId: `0x${config.chainId.toString(16)}`,
           chainName: config.networkName,
           nativeCurrency: {
-            name: 'FTM',
-            symbol: 'ftm',
+            name: 'AVAX',
+            symbol: 'avax',
             decimals: 18,
           },
           rpcUrls: [config.defaultProvider],
-          blockExplorerUrls: [config.ftmscanUrl],
+          blockExplorerUrls: [config.avaxscanUrl],
         },
       ],
     });

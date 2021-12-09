@@ -8,13 +8,13 @@ const newTheme = createMuiTheme({
       primary: '#FFF',
     },
     background: {
-      default: '#121212',
+      default: '#ffffff',
       paper: 'rgba(255, 255, 255, 0.9)',
     },
     primary: {
-      light: '#757ce8',
-      main: '#571eb1',
-      dark: '#2c2560',
+      light: '#e6615f',
+      main: '#e84142',
+      dark: '#be0011',
       contrastText: '#000',
     },
     secondary: {
@@ -30,8 +30,8 @@ const newTheme = createMuiTheme({
     },
   },
   typography: {
-    color: '#2c2560',
-    fontFamily: ['"Poppins"', 'sans-serif'].join(','),
+    color: '#e84142',
+    fontFamily: ['"Roadex Pro"', 'sans-serif'].join(','),
   },
 });
 
