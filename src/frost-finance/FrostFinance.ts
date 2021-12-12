@@ -17,7 +17,7 @@ import moment from 'moment';
 import { parseUnits } from 'ethers/lib/utils';
 import { AVAX_TICKER, TRADERJOE_ROUTER_ADDR, FROST_TICKER } from '../utils/constants';
 /**
- * An API module of Frost Finance contracts.
+ * An API module of Frozen Capital contracts.
  * All contract-interacting domain logic should be defined in here.
  */
 export class FrostFinance {

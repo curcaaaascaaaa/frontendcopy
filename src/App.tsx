@@ -87,7 +87,7 @@ const Providers: React.FC = ({ children }) => {
             walletconnect: { rpcUrl: config.defaultProvider },
             walletlink: {
               url: config.defaultProvider,
-              appName: 'Frost Finance',
+              appName: 'Frozen Capital',
               appLogoUrl: 'https://github.com/frostfinance/frostfinance-assets/blob/master/logo_frost_NoBG.png',
             },
           }}

@@ -16,7 +16,10 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usefShareStats from '../../hooks/usefShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import { frost as frostTesting, fShare as fShareTesting } from '../../frost-finance/deployments/deployments.testing.json';
+import {
+  frost as frostTesting,
+  fShare as fShareTesting,
+} from '../../frost-finance/deployments/deployments.testing.json';
 import { frost as frostProd, fShare as fShareProd } from '../../frost-finance/deployments/deployments.mainnet.json';
 
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
@@ -67,37 +70,33 @@ const Home = () => {
 
   const frostLPStats = useMemo(() => (frostAvaxLpStats ? frostAvaxLpStats : null), [frostAvaxLpStats]);
   const fshareLPStats = useMemo(() => (fShareAvaxLpStats ? fShareAvaxLpStats : null), [fShareAvaxLpStats]);
-  const frostPriceInDollars = useMemo(
-    () => (frostStats ? Number(frostStats.priceInDollars).toFixed(2) : null),
-    [frostStats],
-  );
+  const frostPriceInDollars = useMemo(() => (frostStats ? Number(frostStats.priceInDollars).toFixed(2) : null), [
+    frostStats,
+  ]);
   const frostPriceInAVAX = useMemo(() => (frostStats ? Number(frostStats.tokenInAvax).toFixed(4) : null), [frostStats]);
-  const frostCirculatingSupply = useMemo(() => (frostStats ? String(frostStats.circulatingSupply) : null), [frostStats]);
+  const frostCirculatingSupply = useMemo(() => (frostStats ? String(frostStats.circulatingSupply) : null), [
+    frostStats,
+  ]);
   const frostTotalSupply = useMemo(() => (frostStats ? String(frostStats.totalSupply) : null), [frostStats]);
 
-  const fSharePriceInDollars = useMemo(
-    () => (fShareStats ? Number(fShareStats.priceInDollars).toFixed(2) : null),
-    [fShareStats],
-  );
-  const fSharePriceInAVAX = useMemo(
-    () => (fShareStats ? Number(fShareStats.tokenInAvax).toFixed(4) : null),
-    [fShareStats],
-  );
-  const fShareCirculatingSupply = useMemo(
-    () => (fShareStats ? String(fShareStats.circulatingSupply) : null),
-    [fShareStats],
-  );
+  const fSharePriceInDollars = useMemo(() => (fShareStats ? Number(fShareStats.priceInDollars).toFixed(2) : null), [
+    fShareStats,
+  ]);
+  const fSharePriceInAVAX = useMemo(() => (fShareStats ? Number(fShareStats.tokenInAvax).toFixed(4) : null), [
+    fShareStats,
+  ]);
+  const fShareCirculatingSupply = useMemo(() => (fShareStats ? String(fShareStats.circulatingSupply) : null), [
+    fShareStats,
+  ]);
   const fShareTotalSupply = useMemo(() => (fShareStats ? String(fShareStats.totalSupply) : null), [fShareStats]);
 
-  const fBondPriceInDollars = useMemo(
-    () => (fBondStats ? Number(fBondStats.priceInDollars).toFixed(2) : null),
-    [fBondStats],
-  );
+  const fBondPriceInDollars = useMemo(() => (fBondStats ? Number(fBondStats.priceInDollars).toFixed(2) : null), [
+    fBondStats,
+  ]);
   const fBondPriceInAVAX = useMemo(() => (fBondStats ? Number(fBondStats.tokenInAvax).toFixed(4) : null), [fBondStats]);
-  const fBondCirculatingSupply = useMemo(
-    () => (fBondStats ? String(fBondStats.circulatingSupply) : null),
-    [fBondStats],
-  );
+  const fBondCirculatingSupply = useMemo(() => (fBondStats ? String(fBondStats.circulatingSupply) : null), [
+    fBondStats,
+  ]);
   const fBondTotalSupply = useMemo(() => (fBondStats ? String(fBondStats.totalSupply) : null), [fBondStats]);
 
   const frostLpZap = useZap({ depositTokenName: 'FROST-AVAX-LP' });
@@ -106,6 +105,7 @@ const Home = () => {
   const StyledLink = styled.a`
     font-weight: 700;
     text-decoration: none;
+    color: hotpink;
   `;
 
   const [onPresentFrostZap, onDissmissFrostZap] = useModal(
@@ -145,26 +145,28 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper>
             <Box p={4}>
-              <h2>Welcome to Frost Finance</h2>
+              <h2>Welcome to Frozen Capital</h2>
               <p>The first algorithmic stablecoin on Avalanche, pegged to the price of 1 AVAX via seigniorage.</p>
               <p>
-                Stake your FROST-AVAX LP in the Cabin to earn FSHARE rewards.
-                Then stake your earned FSHARE in the Lodge to earn more FROST!
+                Stake your FROST-AVAX LP in the Cabin to earn FSHARE rewards. Then stake your earned FSHARE in the Lodge
+                to earn more FROST!
               </p>
             </Box>
           </Paper>
-
-
-
         </Grid>
 
         <Grid container spacing={3}>
-    <Grid item  xs={12} sm={12} justify="center"  style={{ margin: '12px', display: 'flex' }}>
+          <Grid item xs={12} sm={12} justify="center" style={{ margin: '12px', display: 'flex' }}>
             <Alert variant="filled" severity="warning">
               <b>
-      Please visit our <StyledLink target="_blank" href="https://docs.frost.finance">documentation</StyledLink> before purchasing FROST or FSHARE!</b>
+                Please visit our{' '}
+                <StyledLink target="_blank" href="https://docs.frozen.capital">
+                  documentation
+                </StyledLink>{' '}
+                before purchasing FROST or FSHARE!
+              </b>
             </Alert>
-        </Grid>
+          </Grid>
         </Grid>
 
         {/* TVL */}
