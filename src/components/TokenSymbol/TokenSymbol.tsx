@@ -13,7 +13,7 @@ import fshareAvaxLpLogo from '../../assets/img/fshare_avax_lp.svg';
 import wavaxLogo from '../../assets/img/avalanche_avax_logo.svg';
 import joeLogo from '../../assets/img/joe.png';
 import zooLogo from '../../assets/img/zoo_logo.svg';
-import shibaLogo from '../../assets/img/shiba_logo.svg';
+import linkLogo from '../../assets/img/link.png';
 
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
@@ -25,7 +25,7 @@ const logosBySymbol: { [title: string]: string } = {
   FBOND: fBondLogo,
   WAVAX: wavaxLogo,
   JOE: joeLogo,
-  SHIBA: shibaLogo,
+  LINK: linkLogo,
   ZOO: zooLogo,
   'FROST-AVAX-LP': frostAvaxLpLogo,
   'FSHARE-AVAX-LP': fshareAvaxLpLogo,

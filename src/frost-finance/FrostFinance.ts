@@ -98,7 +98,7 @@ export class FrostFinance {
   async getFrostStat(): Promise<TokenStat> {
     const { FrostAvaxRewardPool, FrostAvaxLpFrostRewardPool, FrostAvaxLpFrostRewardPoolOld } = this.contracts;
     const supply = await this.FROST.totalSupply();
-    const frostRewardPoolSupply = await this.FROST.balanceOf(FrostAvaxRewardPool.address);
+    const frostRewardPoolSupply = await this.FROST.balanceOf(FrostAvaxLpFrostRewardPool.address);
     const frostRewardPoolSupply2 = await this.FROST.balanceOf(FrostAvaxLpFrostRewardPool.address);
     const frostRewardPoolSupplyOld = await this.FROST.balanceOf(FrostAvaxLpFrostRewardPoolOld.address);
     const frostCirculatingSupply = supply
