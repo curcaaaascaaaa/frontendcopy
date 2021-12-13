@@ -40,7 +40,7 @@ const configurations: { [env: string]: Configuration } = {
       'FROST-AVAX-LP': ['0x6Af7503fc3573DFCA60EA602b2De58358fE0843E', 18],
       'FSHARE-AVAX-LP': ['0x2b7b5e9c0520a19c6cf4f42c3a2747bee7625e66', 18],
     },
-    baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
+    baseLaunchDate: new Date(),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
     masonryLaunchesAt: new Date('2020-12-11T00:00:00Z'),
     refreshInterval: 10000,

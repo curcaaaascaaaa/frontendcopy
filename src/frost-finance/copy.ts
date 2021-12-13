@@ -487,7 +487,7 @@ export class FrostFinance {
     return this.masonryVersionOfUser !== 'latest';
   }
 
-  async getTokenPriceFromSpiritswap(tokenContract: ERC20): Promise<string> {
+  async getTokenPriceFromPancakeswap(tokenContract: ERC20): Promise<string> {
     const ready = await this.provider.ready;
     if (!ready) return;
     const { chainId } = this.config;
@@ -505,7 +505,7 @@ export class FrostFinance {
     }
   }
 
-  async getTokenPriceFromPancakeswap(tokenContract: ERC20): Promise<string> {
+  async getTokenPriceFromSpiritswap(tokenContract: ERC20): Promise<string> {
     const ready = await this.provider.ready;
     if (!ready) return;
     const { chainId } = this.config;
